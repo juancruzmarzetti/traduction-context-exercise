@@ -7,14 +7,14 @@ const Body = () => {
     const {language} = useLanguageStates();
     
     const bodyLanguage = () => {
-        if(language === "ES"){
+        if(language === languages.español.id){
             return (
                 <>
                     <h1>{languages.español.text.title}</h1>
                     <p>{languages.español.text.description}</p>
                 </>
             )
-        }else if(language === "EN"){
+        }else if(language === languages.english.id){
             return (
                 <>
                     <h1>{languages.english.text.title}</h1>
