@@ -1,25 +1,28 @@
 import './App.css'
-import React, { useState } from 'react'
-import LanguageContext, { languages } from './context';
+import React from 'react'
+import {useLanguageStates} from './context';
 import Navbar from './components/Navbar';
 import Body from './components/Body';
+import Context from './context';
 
 function App() {
 
-  const [language, setLanguage] = useState(languages.english);
+  const {language, setLanguage} = useLanguageStates();
 
   const handleChangeLA = () => {
-    setLanguage(() => {
-      //SUGERENCIA: Función que cambia de un idioma a otro (haciendo clic en el botón)
-    })
+    if(language === "EN"){
+      setLanguage("ES");
+    }else if(language === "ES"){
+      setLanguage("PTBR");
+    }else{
+      setLanguage("EN");
+    }
   }
 
   return (
     <div className="App">
-      <>{/* SUGERENCIA: Agregue el Provider de LanguageContext */}
-        <Navbar />
-        <Body />
-      </>
+      <Navbar handleChangeLA={handleChangeLA}/>
+      <Body />
     </div>
   )
 }

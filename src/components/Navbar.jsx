@@ -1,22 +1,45 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import "../App.css"
-import LanguageContext from '../context'
+import { useLanguageStates } from '../context'
+import { languages } from '../utils';
 
-const Navbar = () => {
-    /* DICA: Descomente esse bloco de código, quando "App.jsx" tiver um provider
-    COnsejo: Descomentar este bloque de código, cuando "App.jsx" ya tenga un proveedor
-    const { language, handleChangeLA } = useContext(LanguageContext)
-    const {text} = language
+const Navbar = ({handleChangeLA}) => {
     
-    */
+    const {language} = useLanguageStates();
+
+    const navbarLanguage = () => {
+        if(language === languages.español.id){
+            return (
+                <>
+                    <p>{languages.español.text.home}</p>
+                    <p>{languages.español.text.current}: Español</p>
+                    <button onClick={handleChangeLA}>{languages.español.text.button}</button>
+                </>
+            )
+        }else if(language === languages.portuguesBrasil.id){
+            return (
+                <>
+                    <p>{languages.portuguesBrasil.text.home}</p>
+                    <p>{languages.portuguesBrasil.text.current}: Portugues do Brasil</p>
+                    <button onClick={handleChangeLA}>{languages.portuguesBrasil.text.button}</button>
+                </>
+            )
+        }else{
+            return (
+                <>
+                    <p>{languages.english.text.home}</p>
+                    <p>{languages.english.text.current}: English</p>
+                    <button onClick={handleChangeLA}>{languages.english.text.button}</button>
+                </>
+            )
+        }
+    }
+
     return (
         <div className="navbar">
-            {/* CONSEJO: Renderizar la información traida del contexto de forma dinamica */}
-            <p>Início</p> 
-            <p>Idioma atual: PTBR</p>
-            <button>Alterar idioma</button>
+            {navbarLanguage()}
         </div>
     )
 }
 
-export default Navbar
+export default Navbar;
